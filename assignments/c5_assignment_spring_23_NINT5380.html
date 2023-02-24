@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-02-23">
+<meta name="dcterms.date" content="2023-02-24">
 
 <title>Class 5 Assignment: The Raster Model</title>
 <style>
@@ -79,7 +79,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 23, 2023</p>
+      <p class="date">February 24, 2023</p>
     </div>
   </div>
   
@@ -291,7 +291,20 @@ Note
 <li><p>With the <em>Raster Calculator</em>, utilize the following equation templates across the 5 scenario criteria.</p></li>
 <li><p>The first scenario is to isolate land from water. Here land will be set to <code>7</code> and water will be set to <code>0</code> whereby any pixel that is <code>≤ 0</code> is assigned <code>0</code> and any pixel <code>&gt; 0.1</code> is set to <code>7</code>:</p></li>
 </ul>
-<pre><code>("Clipped (mask)@1" &lt;= 0) * 0 + ("Clipped (mask)@1" &gt; 0.1) * 7</code></pre>
+<pre><code>("Clipped (mask)@1" &lt;= 0) * 0 + ("Clipped (mask)@1" &gt; 0) * 7</code></pre>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the above equation, the input raster is <code>Clipped (mask)@1</code>; this is the output from the merge and clipped raster process detailed above. If your naming convention is different, certainly use your naming convention in place of <code>Clipped (mask)@1</code>.</p>
+</div>
+</div>
 <ul>
 <li><p>You will assign unique values so that you can merge all grids in the final processing step: best-case scenario (value = 1), worst-case scenario (value = 3), flooded by storm surge (value = 5), area currently underwater (value = 0), and land currently above sea level (value = 7). Odd numbers are chosen so that their sums will produce an unique value scheme with complete separation between conditions.</p></li>
 <li><p>To start, open the <em>Raster Calculator</em> and populate the equation as shown above. Output the result as <code>land</code> into the <code>exports</code> folder within the original data directory:</p></li>
@@ -360,7 +373,7 @@ Note
 <ul>
 <li>Next, move to the best-case scenario (BCS). This is flooding that would occur at the threshold of <code>≤ 0.28</code> meters. Save the output as <code>flood_BCS</code>:</li>
 </ul>
-<pre><code>(("Clipped (mask)@1" &gt; 0.1) AND ("Clipped (mask)@1" &lt;= 0.28)) * 1</code></pre>
+<pre><code>(("Clipped (mask)@1" &gt; 0) AND ("Clipped (mask)@1" &lt;= 0.28)) * 1</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="c5_assignment_spring_23_NINT5380_files/img/20.png" class="img-fluid figure-img"></p>
@@ -376,7 +389,7 @@ Note
 <ul>
 <li>Next, move to the worst-case scenario (WCS). This is flooding that would occur at the threshold of <code>≤ 1.12</code> meters. Here set the TRUE value to <code>3</code>. Save the output as <code>flood_WCS</code>:</li>
 </ul>
-<pre><code>(("Clipped (mask)@1" &gt; 0.1) AND ("Clipped (mask)@1" &lt;= 1.12)) * 3</code></pre>
+<pre><code>(("Clipped (mask)@1" &gt; 0) AND ("Clipped (mask)@1" &lt;= 1.12)) * 3</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="c5_assignment_spring_23_NINT5380_files/img/21.png" class="img-fluid figure-img"></p>
@@ -392,7 +405,7 @@ Note
 <ul>
 <li>Next, move to the storm surge scenario. This is flooding that would occur at the threshold of <code>≤ 10</code> meters. Here set the TRUE value to <code>5</code>. Save the output as <code>flood_storm</code>:</li>
 </ul>
-<pre><code>(("Clipped (mask)@1" &gt; 0.1) AND ("Clipped (mask)@1" &lt;= 10)) * 5</code></pre>
+<pre><code>(("Clipped (mask)@1" &gt; 0) AND ("Clipped (mask)@1" &lt;= 10)) * 5</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="c5_assignment_spring_23_NINT5380_files/img/23.png" class="img-fluid figure-img"></p>
@@ -489,6 +502,15 @@ Note
 <figure class="figure">
 <p><img src="c5_assignment_spring_23_NINT5380_files/img/31.png" class="img-fluid figure-img"></p>
 <p></p><figcaption class="figure-caption"><em>Dissolve Tool Location</em></figcaption><p></p>
+</figure>
+</div>
+<ul>
+<li>Make sure to point <em>Choose Dissove field(s)</em> to <code>VALUE</code>; if this option is not activated, the result will be one polygon, not multiple polygons representing each <em>Zone</em>, i.e.&nbsp;the <code>VALUE</code> attribute.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="c5_assignment_spring_23_NINT5380_files/img/dissolve.2.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption"><em>Choose Dissove field(s) as <code>VALUE</code> </em></figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -602,10 +624,10 @@ Warning
 </figure>
 </div>
 <ul>
-<li><p>The resulting <code>Sum</code> value is the total area in square mile units; in this example 23.42 (your value may be slightly different on your machine, and your exact version of QGIS).</p></li>
+<li><p>The resulting <code>Sum</code> value is the total area in square mile units; in this example 24.883 (your value may be slightly different on your machine, and your exact version of QGIS).</p></li>
 <li><p>Next, create a new column for percent land area for each scenario class. The expression for this new column is:</p></li>
 </ul>
-<pre><code>"SQ Mile" / 23.42 * 100</code></pre>
+<pre><code>"SQ Mile" / 24.883 * 100</code></pre>
 <div class="callout-note callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -616,7 +638,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The value <code>23.42</code> is the total square miles for the land area in the raster; your value may be slightly different.</p>
+<p>The value <code>24.883</code> is the total square miles for the land area in the raster; your value may be slightly different.</p>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
@@ -697,10 +719,10 @@ Note
 <h2 class="anchored" data-anchor-id="concluding-remarks">Concluding Remarks</h2>
 <ul>
 <li><p>In this assignment, you have covered several fundamental raster-based processes to achieve a meaningful quantitative result for a pressing climate-related spatial problem. Returning to the original questions, we can now answer them both through the spatial patterns seen in the cartographic output as well as the summary table result of the assignment.</p></li>
-<li><p>For the first question <em>How much of Manhattan will be inundated by rising sea levels by 2100?</em> we can answer that the best case scenario is approximately <code>1.5%</code> of Manhattan’s land mass. In the worst case scenario, both the map and the summary result report back <code>3.2%</code>; however, inundation would be additive in the worst case scenario so it really would be both scenarios together for approximately <code>4.7%</code> in the worst case scenario.</p></li>
-<li><p>For the second question <em>How much of Manhattan is at risk of a 10 m (30-foot) storm surge?</em> both mapping and summary table found a very significant spatial extent at <code>46.84%</code>. Following the additive logic of the worst case scenario for sea level rise, the 10 m storm surge equates to the <code>4.7%</code> land mass given over to sea level rise coupled with the storm surge <code>46.84%</code> for a total of <code>51.54%</code>, literally more than half of Manhattan land mass. We need to keep in mind that this is an unprecedented value; Hurricane Sandy, for as bad as it was, amounted to a 14-foot storm surge.</p></li>
+<li><p>For the first question <em>How much of Manhattan will be inundated by rising sea levels by 2100?</em> we can answer that the best case scenario is approximately <code>7.3%</code> of Manhattan’s land mass. In the worst case scenario, both the map and the summary result report back <code>3.0%</code>; however, inundation would be additive in the worst case scenario so it really would be both scenarios together for approximately <code>10.3%</code> in the worst case scenario.</p></li>
+<li><p>For the second question <em>How much of Manhattan is at risk of a 10 m (30-foot) storm surge?</em> both mapping and summary table found a very significant spatial extent at <code>44.07%</code>. Following the additive logic of the worst case scenario for sea level rise, the 10 m storm surge equates to the <code>10.3%</code> land mass given over to sea level rise coupled with the storm surge <code>44.07%</code> for a total of <code>54.37%</code>, literally more than half of Manhattan land mass. We need to keep in mind that this is an unprecedented value; Hurricane Sandy, for as bad as it was, amounted to a 14-foot storm surge.</p></li>
 <li><p>Of important note, both cartographic and summary results are limited in total accuracy due to the relatively large cell size of the assignment DEM input. We utilized this relatively course pixel size (30-meter) in order to speed up the assignment processing. If we were to use 10-meter, 1-meter or even sub-meter resolution DEM, we would certainly achieve more accurate results across all scenarios - it would just take more processing resources to process the more resolute raster data.</p></li>
-<li><p>Finally, our Manhattan Borough boundary included the administrative boundary including water areas. In order to better represent land area, NYC Planning does offer an accurate <a href="https://www.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page">shoreline dataset for all 5 boroughs</a>. If we were to use this vector boundary coupled with more resolute DEM raster pixels, we would be able to achieve a more accurate final result in both cartographic and summary table output.</p></li>
+<li><p>Finally, our Manhattan Borough boundary included the administrative boundary including water areas. In order to better represent land area, NYC Planning does offer an accurate <a href="https://www.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page">shoreline dataset for all 5 boroughs</a>. If we were to use this vector boundary coupled with more resolute DEM raster pixels, we would be able to achieve a significantly more accurate final result in both cartographic and summary table output.</p></li>
 </ul>
 </section>
 
