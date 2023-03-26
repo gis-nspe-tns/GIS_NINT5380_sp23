@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-03-25">
+<meta name="dcterms.date" content="2023-03-26">
 
 <title>Class 8 Lab: Spatial Analysis of Raster Data + Suitability Model</title>
 <style>
@@ -53,12 +53,12 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data:</a></li>
   <li><a href="#assignment-step-1" id="toc-assignment-step-1" class="nav-link" data-scroll-target="#assignment-step-1">Assignment Step 1</a></li>
   <li><a href="#assignment-step-2---data-preprocessing-for-the-vector-features" id="toc-assignment-step-2---data-preprocessing-for-the-vector-features" class="nav-link" data-scroll-target="#assignment-step-2---data-preprocessing-for-the-vector-features">Assignment Step 2 - Data preprocessing for the vector features</a></li>
-  <li><a href="#assignment-step-2---merge-water-themes" id="toc-assignment-step-2---merge-water-themes" class="nav-link" data-scroll-target="#assignment-step-2---merge-water-themes">Assignment Step 2 - Merge Water Themes</a></li>
-  <li><a href="#assignment-step-3---proximity-distance-surfaces" id="toc-assignment-step-3---proximity-distance-surfaces" class="nav-link" data-scroll-target="#assignment-step-3---proximity-distance-surfaces">Assignment Step 3 - Proximity Distance Surfaces</a></li>
-  <li><a href="#assignment-step-4---raster-reclassification" id="toc-assignment-step-4---raster-reclassification" class="nav-link" data-scroll-target="#assignment-step-4---raster-reclassification">Assignment Step 4 - Raster Reclassification</a></li>
-  <li><a href="#assignment-step-5---suitability-combination" id="toc-assignment-step-5---suitability-combination" class="nav-link" data-scroll-target="#assignment-step-5---suitability-combination">Assignment Step 5 - Suitability Combination</a></li>
-  <li><a href="#assignment-step-6---subsetting-a-final-most-suitable-class" id="toc-assignment-step-6---subsetting-a-final-most-suitable-class" class="nav-link" data-scroll-target="#assignment-step-6---subsetting-a-final-most-suitable-class">Assignment Step 6 - Subsetting a Final <em>Most Suitable</em> Class</a></li>
-  <li><a href="#assignment-step-7---preparation-for-cartographic-design---hillshade-surface" id="toc-assignment-step-7---preparation-for-cartographic-design---hillshade-surface" class="nav-link" data-scroll-target="#assignment-step-7---preparation-for-cartographic-design---hillshade-surface">Assignment Step 7 - Preparation for Cartographic Design - Hillshade Surface</a></li>
+  <li><a href="#assignment-step-3---merge-water-themes" id="toc-assignment-step-3---merge-water-themes" class="nav-link" data-scroll-target="#assignment-step-3---merge-water-themes">Assignment Step 3 - Merge Water Themes</a></li>
+  <li><a href="#assignment-step-4---proximity-distance-surfaces" id="toc-assignment-step-4---proximity-distance-surfaces" class="nav-link" data-scroll-target="#assignment-step-4---proximity-distance-surfaces">Assignment Step 4 - Proximity Distance Surfaces</a></li>
+  <li><a href="#assignment-step-5---raster-reclassification" id="toc-assignment-step-5---raster-reclassification" class="nav-link" data-scroll-target="#assignment-step-5---raster-reclassification">Assignment Step 5 - Raster Reclassification</a></li>
+  <li><a href="#assignment-step-6---suitability-combination" id="toc-assignment-step-6---suitability-combination" class="nav-link" data-scroll-target="#assignment-step-6---suitability-combination">Assignment Step 6 - Suitability Combination</a></li>
+  <li><a href="#assignment-step-7---subsetting-a-final-most-suitable-class" id="toc-assignment-step-7---subsetting-a-final-most-suitable-class" class="nav-link" data-scroll-target="#assignment-step-7---subsetting-a-final-most-suitable-class">Assignment Step 7 - Subsetting a Final <em>Most Suitable</em> Class</a></li>
+  <li><a href="#assignment-step-8---preparation-for-cartographic-design---hillshade-surface" id="toc-assignment-step-8---preparation-for-cartographic-design---hillshade-surface" class="nav-link" data-scroll-target="#assignment-step-8---preparation-for-cartographic-design---hillshade-surface">Assignment Step 8 - Preparation for Cartographic Design - Hillshade Surface</a></li>
   <li><a href="#map-layout-deliverable" id="toc-map-layout-deliverable" class="nav-link" data-scroll-target="#map-layout-deliverable">Map layout &amp; Deliverable:</a></li>
   <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources">Resources:</a></li>
   </ul>
@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 25, 2023</p>
+      <p class="date">March 26, 2023</p>
     </div>
   </div>
   
@@ -263,8 +263,8 @@ Warning
 </div>
 </div>
 </section>
-<section id="assignment-step-2---merge-water-themes" class="level2">
-<h2 class="anchored" data-anchor-id="assignment-step-2---merge-water-themes">Assignment Step 2 - Merge Water Themes</h2>
+<section id="assignment-step-3---merge-water-themes" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-3---merge-water-themes">Assignment Step 3 - Merge Water Themes</h2>
 <p>Given that water as polyline vs polygons are not a meaningful distinction for this analysis, it makes sense to merge the water themes. Here Polygons and Polylines for water really represent the same theme - water assets. So those can be merged via <em>Raster Calculator</em> and set to output as <code>raster_water_merged_60m</code>:</p>
 <pre><code>""water_polylines_raster_60m@1" + "water_polygons_raster_60m@1"</code></pre>
 <div class="quarto-figure quarto-figure-center">
@@ -289,8 +289,8 @@ Warning
 </figure>
 </div>
 </section>
-<section id="assignment-step-3---proximity-distance-surfaces" class="level2">
-<h2 class="anchored" data-anchor-id="assignment-step-3---proximity-distance-surfaces">Assignment Step 3 - Proximity Distance Surfaces</h2>
+<section id="assignment-step-4---proximity-distance-surfaces" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-4---proximity-distance-surfaces">Assignment Step 4 - Proximity Distance Surfaces</h2>
 <p>In review of the original criteria we see that their are two distance criteria:</p>
 <ul>
 <li>Close to roads</li>
@@ -344,8 +344,8 @@ Warning
 </figure>
 </div>
 </section>
-<section id="assignment-step-4---raster-reclassification" class="level2">
-<h2 class="anchored" data-anchor-id="assignment-step-4---raster-reclassification">Assignment Step 4 - Raster Reclassification</h2>
+<section id="assignment-step-5---raster-reclassification" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-5---raster-reclassification">Assignment Step 5 - Raster Reclassification</h2>
 <p>With the distance analysis complete, scores are applied based on thresholds. The following score schema will be used for <code>roads_proximity.tif</code>. This schema gives more points to less distance (closer to roads) across 3 discrete classes:</p>
 <pre><code>0-1000m –&gt; 100
 
@@ -388,8 +388,8 @@ Warning
 </figure>
 </div>
 </section>
-<section id="assignment-step-5---suitability-combination" class="level2">
-<h2 class="anchored" data-anchor-id="assignment-step-5---suitability-combination">Assignment Step 5 - Suitability Combination</h2>
+<section id="assignment-step-6---suitability-combination" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-6---suitability-combination">Assignment Step 6 - Suitability Combination</h2>
 <p>The next and final analysis process will produce the final suitability result. In the following formula, the reclass rasters and the protected regions raster are the factors that are multiplied to produce suitability results within the state boundary. By multiplying the product at the end by raster_boundary@1, cells outside the state boundary are discarded.</p>
 <p>Output name = <code>overlay.tif</code></p>
 <pre><code>("roads_reclass@1" + "water_reclass@1")*("protected_regions_raster_60m@1"  !=  1 )*"boundary_raster_60m@1"</code></pre>
@@ -428,8 +428,8 @@ Warning
 </figure>
 </div>
 </section>
-<section id="assignment-step-6---subsetting-a-final-most-suitable-class" class="level2">
-<h2 class="anchored" data-anchor-id="assignment-step-6---subsetting-a-final-most-suitable-class">Assignment Step 6 - Subsetting a Final <em>Most Suitable</em> Class</h2>
+<section id="assignment-step-7---subsetting-a-final-most-suitable-class" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-7---subsetting-a-final-most-suitable-class">Assignment Step 7 - Subsetting a Final <em>Most Suitable</em> Class</h2>
 <p>With the overaly suitability complete, there still remains one last ordinal class - the most suitable based on threshold criteria of 800 - 1000 continuous acres of the Highly Suitable class. To do this task, the pixel cells for the <em>200 - Highly Suitable</em> class will be extracted and subsetted to a new vector feature.</p>
 <p>To start, <em>Reclass</em> the array of values 0 - 200 into 3 separate bins in the <em>Reclass by Table</em> tool:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -569,8 +569,8 @@ Note
 </figure>
 </div>
 </section>
-<section id="assignment-step-7---preparation-for-cartographic-design---hillshade-surface" class="level2">
-<h2 class="anchored" data-anchor-id="assignment-step-7---preparation-for-cartographic-design---hillshade-surface">Assignment Step 7 - Preparation for Cartographic Design - Hillshade Surface</h2>
+<section id="assignment-step-8---preparation-for-cartographic-design---hillshade-surface" class="level2">
+<h2 class="anchored" data-anchor-id="assignment-step-8---preparation-for-cartographic-design---hillshade-surface">Assignment Step 8 - Preparation for Cartographic Design - Hillshade Surface</h2>
 <p>With the bulk of the suitability now complete, you will utilize a raster surface function known as <a href="https://pro.arcgis.com/en/pro-app/latest/help/analysis/raster-functions/hillshade-function.htm">hillshade</a> to augment the design process:</p>
 <blockquote class="blockquote">
 <p>Multidirectional hillshade improves terrain visualization. It combines light from six different directions to represent an enhanced visualization of the terrain and to improve the appearance of regions with low relief. It improves the balance between the overexposed and shadow areas of the map. The output is suitable to use as a relief backdrop for topographical, soil, hydrological, land cover, or other thematic maps in which the data will be enhanced with topography.</p>
@@ -632,7 +632,7 @@ Note
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="c8_assignment_spring_23_NINT5380_files/img/cartographic-example.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption"><em>Example Layout - Assignment 7</em></figcaption><p></p>
+<p></p><figcaption class="figure-caption"><em>Example Layout - Assignment 8</em></figcaption><p></p>
 </figure>
 </div></li>
 <li><p>Utilize the following map example to guide your design process:</p></li>
