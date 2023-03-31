@@ -374,7 +374,7 @@ Note
 <p></p><figcaption class="figure-caption"><em>table calculation preparation for final normalization - tornadoes per 100 square miles</em></figcaption><p></p>
 </figure>
 </div>
-<p>Finally, normalize the tornado count per 100 county miles within a new field <code>count.100</code>, type whole number:</p>
+<p>Finally, normalize the tornado count per 100 county miles within a new field <code>count_100</code>, type whole number:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="c9_assignment_spring_23_NINT5380_files/img/cal.png" class="img-fluid figure-img"></p>
@@ -397,7 +397,7 @@ Note
 </section>
 <section id="assignment-step-6---rank-assignments" class="level2">
 <h2 class="anchored" data-anchor-id="assignment-step-6---rank-assignments">Assignment Step 6 - Rank Assignments</h2>
-<p>In this next step, 4 total rank assignments will be given to a new column <code>risk.rank</code> based on a series of selections.</p>
+<p>In this next step, 4 total rank assignments will be given to a new column <code>risk_rank</code> based on a series of selections.</p>
 <blockquote class="blockquote">
 <p>Use the median societal exposure and tornado incidence scores as the break between high and low exposure and incidence - <a href="https://www.scribd.com/document/361951273/Tornado-Vulnerability-in-Texas">source</a>.</p>
 </blockquote>
@@ -405,34 +405,37 @@ Note
 <li>4 Rank Conditions:</li>
 </ul>
 <blockquote class="blockquote">
-<p>11.10% = Median Mobile Home per County 3 = Median Tornado segments per 100 miles, per county (when producing this statistic, NULL values are assumed to be value 0.</p>
+<p>11.22% = Median Mobile Home percentage per County</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>3.22 Median Tornado segments per 100 miles, per county (when producing this statistic, NULL values are assumed to be value 0.</p>
 </blockquote>
 <pre><code>
 Condition #1 -
 Low Incidence, Low Exposure
-LI = &lt;3
-LE = &lt;11
+LI = &lt;3.22
+LE = &lt;11.22
 
 
 Condition #2 -
 Low Incidence, High Exposure
-LI = &lt;3
-HE = &gt;=11
+LI = &lt;3.22
+HE = &gt;=11.22
 
 
 Condition #3 -
 High Incidence, Low Exposure
-HI = &gt;=3
-LE = &lt;11
+HI = &gt;=3.22
+LE = &lt;11.22
 
 
 Condition #4 -
 High Incidence, High Exposure
-HI = &gt;=3
-HE = &gt;=11
+HI = &gt;=3.22
+HE = &gt;=11.22
 </code></pre>
-<p>Utilize fields <code>count.100</code> and <code>MobileHome</code> for <strong>Incidence</strong> and <strong>Exposure</strong>, respectively.</p>
-<p>To Start, make each selection condition #1 through #4 within <code>count.100</code> and <code>MobileHome</code>. Create a new column <code>risk.rank</code>, type whole number and make assignment 1, 2 , 3 and 4 in this new column based on each selection, respectively.</p>
+<p>Utilize fields <code>count_100</code> and <code>MobileHome</code> for <strong>Incidence</strong> and <strong>Exposure</strong>, respectively.</p>
+<p>To Start, make each selection condition #1 through #4 within <code>count_100</code> and <code>MobileHome</code>. Create a new column <code>risk_rank</code>, type whole number and make assignment 1, 2 , 3 and 4 in this new column based on each selection, respectively.</p>
 <blockquote class="blockquote">
 <p>Populate with value -999 to start. Any records with -999 resulting are simply the NULL values - counties that have no tornadoes. Those can either be symbolized in the final map as ‘low’ or as ‘No Incidence Records’:</p>
 </blockquote>
@@ -443,11 +446,11 @@ HE = &gt;=11
 </figure>
 </div>
 <p>Selection and Assignments for Conditions:</p>
-<p>Make sure to clear selections after each condition is assigned in <code>risk.rank</code> and <em>Toogle Off</em> and save each assignment before proceeding to next assignment:</p>
+<p>Make sure to clear selections after each condition is assigned in <code>risk.rank</code>:</p>
 <ul>
 <li><p>Condition #1 -</p>
 <ul>
-<li>Select by Expression: <code>"count.100" &lt;3 and  "MobileHome" &lt;11</code></li>
+<li>Select by Expression: <code>""MobileHome" &lt;11.22 and  "count_100" &lt;3.22</code></li>
 <li>Field Calculator within <code>risk.rank</code> = 1</li>
 </ul></li>
 </ul>
@@ -457,11 +460,11 @@ HE = &gt;=11
 <p></p><figcaption class="figure-caption"><em>Condition 1</em></figcaption><p></p>
 </figure>
 </div>
-<p>Condition <code>1</code> should result in <code>454</code> records assigned this #1 Low Incidence, Low Exposure rank.</p>
+<p>Condition <code>1</code> should result in <code>629</code> records assigned this #1 Low Incidence, Low Exposure rank.</p>
 <ul>
 <li><p>Condition #2 -</p>
 <ul>
-<li>Select by Expression: <code>"count.100" &lt;3 and  "MobileHome" &gt;=11</code></li>
+<li>Select by Expression: <code>"MobileHome" &gt;=11.22 and  "count_100" &lt;3.22</code></li>
 <li>Field Calculator within <code>risk.rank</code>:</li>
 </ul></li>
 </ul>
@@ -471,11 +474,11 @@ HE = &gt;=11
 <p></p><figcaption class="figure-caption"><em>Condition 2</em></figcaption><p></p>
 </figure>
 </div>
-<p>Condition <code>2</code> should result in <code>716</code> records assigned this #2 Low Incidence, High Exposure rank.</p>
+<p>Condition <code>2</code> should result in <code>889</code> records assigned this #2 Low Incidence, High Exposure rank.</p>
 <ul>
 <li><p>Condition #3 -</p>
 <ul>
-<li>Select by Expression: <code>"count.100" &gt;=3 and  "MobileHome" &lt;11</code></li>
+<li>Select by Expression: <code>"MobileHome" &lt;11.22 and  "count_100" &gt;=3.22</code></li>
 <li>Field Calculator within <code>risk.rank</code>:</li>
 </ul></li>
 </ul>
@@ -485,11 +488,11 @@ HE = &gt;=11
 <p></p><figcaption class="figure-caption"><em>Condition 3</em></figcaption><p></p>
 </figure>
 </div>
-<p>Condition <code>3</code> should result in <code>990</code> records assigned this #3 High Incidence, Low Exposure rank.</p>
+<p>Condition <code>3</code> should result in <code>849</code> records assigned this #3 High Incidence, Low Exposure rank.</p>
 <ul>
 <li><p>Condition #4 -</p>
 <ul>
-<li>Select by Expression: <code>"count.100" &gt;=3 and  "MobileHome" &gt;=11</code></li>
+<li>Select by Expression: <code>"MobileHome" &gt;=11.22 and  "count_100" &gt;=3.22</code></li>
 <li>Field Calculator within <code>risk.rank</code>:</li>
 </ul></li>
 </ul>
@@ -499,7 +502,7 @@ HE = &gt;=11
 <p></p><figcaption class="figure-caption"><em>Condition 4</em></figcaption><p></p>
 </figure>
 </div>
-<p>Condition <code>4</code> should result in <code>863</code> records assigned this #4 High Incidence, High Exposure rank.</p>
+<p>Condition <code>4</code> should result in <code>656</code> records assigned this #4 High Incidence, High Exposure rank.</p>
 </section>
 <section id="assignment-step-7---thematic-design" class="level2">
 <h2 class="anchored" data-anchor-id="assignment-step-7---thematic-design">Assignment Step 7 - Thematic Design</h2>
