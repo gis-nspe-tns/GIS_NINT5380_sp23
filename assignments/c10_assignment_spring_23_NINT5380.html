@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-04-08">
+<meta name="dcterms.date" content="2023-04-09">
 
 <title>Class 10 Assignment: Remote Sensing, Landsat Imagery &amp; Spectral Indices</title>
 <style>
@@ -77,7 +77,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">April 8, 2023</p>
+      <p class="date">April 9, 2023</p>
     </div>
   </div>
   
@@ -164,22 +164,23 @@ ul.task-list li input[type="checkbox"] {
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
 <ul>
-<li><a href="https://www.dropbox.com/s/9rk4p152kkt8fob/c10_assignment_data.zip?dl=1">C12 Assignment Data Package Download</a></li>
+<li><a href="https://www.dropbox.com/s/4v7wea7pfofmbth/c10_assignment_data.zip?dl=1">C10 Assignment Data Package Download</a></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="c10_assignment_spring_23_NINT5380_files/img/data.1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">C12 Data Package</figcaption><p></p>
+<p></p><figcaption class="figure-caption">C10 Data Package</figcaption><p></p>
 </figure>
 </div>
 <blockquote class="blockquote">
-<p>Note: The <code>C12 Data Pacakge</code> features the ARD grid utilized early in the assignment to determine the horizontal and vertical position of the assignment AOI. Once done, two empty folders are provided for the surface temperature data (ARD_ST) and the surface reflectance data (ARD_SR). When accessing data at <a href="https://earthexplorer.usgs.gov/">EarthExplorer</a>, the results can be placed in the ARD_ST and ARD_SR folders, respectively, to keep assignment organization.</p>
+<p>Note: The <code>C10 Data Pacakge</code> features the ARD grid utilized early in the assignment to determine the horizontal and vertical position of the assignment AOI. Once done, two empty folders are provided for the surface temperature data (ARD_ST) and the surface reflectance data (ARD_SR). When accessing data at <a href="https://earthexplorer.usgs.gov/">EarthExplorer</a>, the results can be placed in the ARD_ST and ARD_SR folders, respectively, to keep assignment organization.</p>
 </blockquote>
 </section>
 <section id="assignment-step-1" class="level2">
 <h2 class="anchored" data-anchor-id="assignment-step-1">Assignment Step 1</h2>
 <ul>
-<li><p><strong>To Start</strong>, this assignment will rely on both the general process and sample imagery found in <a href="https://gis-nspe-tns.github.io/GIS_NINT5380_sp23/demos/c10.lecture.demo.html">this week’s lecture demo</a>. Here the city of Springfield, MO is the AOI; the imagery date is the height of summer on June 20th, 2021 at approximately 10:50 am (more on how to determine time of the imagery later in the assignment).</p></li>
+<li><p><strong>To Start</strong>, this assignment will rely on both the general process and sample imagery found in <a href="https://gis-nspe-tns.github.io/GIS_NINT5380_sp23/demos/c10_lecture_demo.html">this week’s lecture demo</a>. Here the city of Springfield, MO is the AOI; the imagery date is the height of summer on June 20th, 2021 at approximately 10:50 am (more on how to determine time of the imagery later in the assignment).</p></li>
+<li><p>Link to <a href="https://www.dropbox.com/s/cm7m99204jujwdg/c10_lecture_demo.data.zip?dl=1">Lecture Demo Data</a></p></li>
 <li><p>For your own assignment, you will pick a US city as your AOI. Good picks are cities that are mid-sized to large. They must first meet the following criteria:</p></li>
 </ul>
 <ol type="1">
@@ -304,7 +305,7 @@ EST = -5 GMT</code></pre>
 <h2 class="anchored" data-anchor-id="assignment-step-3">Assignment Step 3</h2>
 <section id="processing-the-imagery-for-ndvi" class="level4">
 <h4 class="anchored" data-anchor-id="processing-the-imagery-for-ndvi">Processing the Imagery for NDVI</h4>
-<p>To Start, Like the <a href="https://gis-nspe-tns.github.io/GIS_NINT5380_sp23/demos/c10.lecture.demo.html">Lecture Demo 10</a>, the NDVI spectral index will be created based on the following formula:</p>
+<p>To Start, Like the <a href="https://gis-nspe-tns.github.io/GIS_NINT5380_sp23/demos/c10_lecture_demo.html">Lecture Demo 10</a>, the NDVI spectral index will be created based on the following formula:</p>
 <pre><code>NDVI = (NIR Band - Red Band / (NIR Band + Red Band)</code></pre>
 <p>As translated to the Landsat 8 band numbers:</p>
 <pre><code>NDVI = (Band 5 – Band 4) / (Band 5 + Band 4)</code></pre>
