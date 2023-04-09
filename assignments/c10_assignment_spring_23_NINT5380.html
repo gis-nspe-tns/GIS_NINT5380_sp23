@@ -255,7 +255,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="assignment-step-2">Assignment Step 2</h2>
 <section id="verify-landsat-8-ard-imagery-date-time-azimuth-and-elevation" class="level4">
 <h4 class="anchored" data-anchor-id="verify-landsat-8-ard-imagery-date-time-azimuth-and-elevation">Verify Landsat 8 ARD Imagery Date, Time, Azimuth and Elevation</h4>
-<p>As we discussed in Lecture 11, the Landsat program instrument is a passive sensor which requires the sun to effectively record electromagnetic values. As Landsat 8 traverses the continental US, it travels in a north&gt;south direction, and it passes the equator heading southward mid-morning. As a result, the Landsat sensor should pass over a city in the continental US in the earlier part of the day. We can check the exact time that a Landsat scene is recorded, and we can also find the sun’s elevation and azimuth. The following graphic shows both elevation and azimuth where 0° elevation is at sunrise and 90° elevation when the sun is directly overhead:</p>
+<p>As we discussed in Lecture 10, the Landsat program instrument is a passive sensor which requires the sun to effectively record electromagnetic values. As Landsat 8 traverses the continental US, it travels in a north&gt;south direction, and it passes the equator heading southward mid-morning. As a result, the Landsat sensor should pass over a city in the continental US in the earlier part of the day. We can check the exact time that a Landsat scene is recorded, and we can also find the sun’s elevation and azimuth. The following graphic shows both elevation and azimuth where 0° elevation is at sunrise and 90° elevation when the sun is directly overhead:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="c10_assignment_spring_23_NINT5380_files/img/diagram.png" class="img-fluid figure-img"></p>
@@ -387,14 +387,14 @@ Warning
 </div>
 <p>Here the digital numbers need to be scaled accordingly, and an offset of <code>149</code> is also applied. If the value is to be expressed in Celcius or Fahrenheit, a further conversion needs to take place via the raster calculator. This will be accomplished in two steps:</p>
 <ol type="1">
-<li><p>Scale the raster values in Raster Calculator.</p></li>
-<li><p>Apply the following temperature conversion where <code>K</code> is the scaled raster values and <code>F</code> is the Fahrenheit temperature measurement:</p></li>
+<li><p>Step 1: Scale the raster values in Raster Calculator.</p></li>
+<li><p>Step 2: Apply the following temperature conversion where <code>K</code> is the scaled raster values and <code>F</code> is the Fahrenheit temperature measurement:</p></li>
 </ol>
 <pre><code>F = 1.8(K - 273) + 32</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="c10_assignment_spring_23_NINT5380_files/img/st.6.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Scaled + Offset Kelvin Values Equation in Raster Calculator</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Step 1: Scaled + Offset Kelvin Values Equation in Raster Calculator</figcaption><p></p>
 </figure>
 </div>
 <p>Next, apply the temperature conversion based on the formula for kelvin to fahrenheit units, and output as <code>your_city_name_ST</code> in the typical, default GeoTiff format:</p>
@@ -403,7 +403,7 @@ Warning
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="c10_assignment_spring_23_NINT5380_files/img/st.7.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Kelvin vs Fahrenheit</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Step 2: Original Kelvin values transformed to Fahrenheit values</figcaption><p></p>
 </figure>
 </div>
 <p>Finally, apply an appropriate color ramp with the city focused in the canvas extent to ensure the surface temperature pattern appears correct where high values are located generally over impervious, high built-up areas; lower values in more suburban and rural areas, often towards the outer edges of cities:</p>
